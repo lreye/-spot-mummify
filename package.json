@@ -1,0 +1,14 @@
+{
+  "name": "spotify-project",
+  "version": "1.0.0",
+  "description": "Learning to work with spotify api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
