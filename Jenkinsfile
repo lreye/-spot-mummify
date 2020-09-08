@@ -19,4 +19,3 @@ pipeline {
         }
     }
 }
-//removed command cd spotify-project/
