@@ -1,6 +1,5 @@
 pipeline {
-    agents any
-    
+    "agents" any
     stages {
         stage ('Verify Branch'){
             steps{
