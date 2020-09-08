@@ -10,7 +10,6 @@ pipeline {
             steps{ 
                 sh (script: 'docker images -a')
                 sh (script: """
-                    cd spotify-project/
                     docker images -a
                     docker build -t spotmummify .
                     docker images -a
@@ -20,3 +19,4 @@ pipeline {
         }
     }
 }
+//removed command cd spotify-project/
