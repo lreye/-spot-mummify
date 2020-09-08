@@ -3,8 +3,10 @@ pipeline {
     stages {
         stage ('Verify Branch'){
             steps{
-                echo $GIT_BRANCH
+                echo 'Pulling... ' + env.GIT_BRANCH
             }
         }
     }
 }
+
+//issue with echo GIT_Branch
