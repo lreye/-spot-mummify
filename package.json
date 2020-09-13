@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "debug": "nodemon --inspect ./server.js 5000",
+    "debug": "nodemon --inspect ./server.js 5001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
