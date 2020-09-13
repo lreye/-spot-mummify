@@ -17,5 +17,31 @@ pipeline {
                 """)
             }
         }
+        stage ('Start Test App') {
+            steps {
+                //add code
+                echo "need to add start docker-composr script"
+            }
+            post {
+                success {
+                    echo "App started successfully :)"
+                }
+                failure {
+                    echo "App failed to start :("
+                }
+            }
+        }
+        stage ('Run Tests') {
+            steps {
+                //add code
+                echo "Running test scripts"
+            }
+        }
+        stage ('Stop Test App') {
+            steps {
+                echo "Stopping App"
+                //sh(script: """docker-compose down""")
+            }
+        }
     }
 }
