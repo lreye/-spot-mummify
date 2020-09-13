@@ -4,12 +4,16 @@
   "description": "Learning to work with spotify api",
   "main": "index.js",
   "scripts": {
-    "start": "echo \"need to implament\"",
+    "start": "nodemon server.js",
+    "debug": "nodemon --inspect ./server.js 5000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
