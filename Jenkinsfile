@@ -20,7 +20,8 @@ pipeline {
         stage ('Start Test App') {
             steps {
                 //add code
-                echo "need to add start docker-composr script"
+                echo "running docker-compose..."
+                sh (script: 'docker-compose up -d')
             }
             post {
                 success {
@@ -40,7 +41,7 @@ pipeline {
         stage ('Stop Test App') {
             steps {
                 echo "Stopping App"
-                //sh(script: """docker-compose down""")
+                sh(script: 'docker-compose down --volumes')
             }
         }
     }
