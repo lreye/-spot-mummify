@@ -11,7 +11,7 @@ fi
 ls -al
 rm -Rf actual.txt
 echo "Removing log files"
-if [ $FOUND -eq 0 ]; then
+if [ $FOUND = 0 ]; then
     echo "CURL HTTP TEST 1 ERROR: "
     exit 1
 fi
