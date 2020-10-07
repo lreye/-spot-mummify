@@ -23,7 +23,7 @@ pipeline {
                 echo "running docker-compose..."
                 sh (script: 'docker-compose up -d')
                 echo "running test on http connection"
-                sh (". Tests/test_http_ok.sh")
+                sh ("./Tests/test_http_ok.sh")
             }
             post {
                 success {

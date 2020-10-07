@@ -7,6 +7,7 @@ if grep "200 OK" actual.txt; then
 else
     let FOUND=0
 fi
+ls -al
 rm -Rf actual.txt
 echo "Removing log files"
 if [ $FOUND = 0 ]; then
