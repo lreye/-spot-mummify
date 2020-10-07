@@ -3,6 +3,7 @@ sleep 2
 url="http://localhost:5000"
 echo 
 curl --silent -I "$url"  > actual.txt
+cat actual.txt
 if grep "200 OK" actual.txt; then
     let FOUND=1
 else
