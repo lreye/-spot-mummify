@@ -8,8 +8,8 @@ pipeline {
         }
         stage ('Docker Build') {
             steps{ 
-                bash (script: 'docker images -a')
-                bash (script: """
+                sh (script: 'docker images -a')
+                sh (script: """
                     docker images -a
                     docker build -t spotmummify .
                     docker images -a
@@ -21,9 +21,9 @@ pipeline {
             steps {
                 //add code
                 echo "running docker-compose..."
-                bash (script: 'docker-compose up -d')
+                sh (script: 'docker-compose up -d')
                 echo "running test on http connection"
-                bash ("./Tests/test_http_ok.sh")
+                sh ("./Tests/test_http_ok.sh")
             }
             post {
                 success {
@@ -43,7 +43,7 @@ pipeline {
         stage ('Stop Test App') {
             steps {
                 echo "Stopping App"
-                bash(script: 'docker-compose down --volumes')
+                sh(script: 'docker-compose down --volumes')
             }
         }
     }

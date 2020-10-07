@@ -1,3 +1,4 @@
+#!/bin/bash
 sleep 2
 url="http://localhost:5000"
 echo 
