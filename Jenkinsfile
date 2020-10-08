@@ -8,6 +8,7 @@ pipeline {
         }
         stage ('Docker Build') {
             steps{ 
+                sh(script: 'docker system prune -a')
                 sh (script: 'docker images -a')
                 sh (script: """
                     docker images -a
@@ -21,7 +22,7 @@ pipeline {
             steps {
                 //add code
                 echo "running docker-compose..."
-                sh (script: 'docker-compose up -d')
+                sh (script: 'docker-compose up -d -rm compile')
                 echo "running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
@@ -30,6 +31,7 @@ pipeline {
                     echo "App started successfully :)"
                 }
                 failure {
+                    sh(script: 'docker-compose down --volumes')
                     echo "App failed to start :("
                 }
             }
