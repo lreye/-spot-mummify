@@ -22,7 +22,7 @@ pipeline {
             steps {
                 //add code
                 echo "running docker-compose..."
-                sh (script: 'docker-compose up -d -rm compile')
+                sh (script: 'docker-compose up -d')
                 echo "running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
