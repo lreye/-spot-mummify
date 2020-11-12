@@ -3,6 +3,7 @@ services:
     server:
         build: 
             context: .
+            dockerfile: Dockerfile
         ports: 
             - "5000:5000"
             - "5001:5001"
@@ -10,5 +11,6 @@ services:
             - SERVER_PORT=8080
         volumes:
             - ./:/usr/src/app
+            - /usr/app/node_modules
         command: npm run debug
             
