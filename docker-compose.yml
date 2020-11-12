@@ -12,5 +12,5 @@ services:
         volumes:
             - ./:/usr/src/app
             - /usr/app/node_modules
-        command: npm run debug
+        command: npm run start
             
