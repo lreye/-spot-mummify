@@ -13,7 +13,6 @@ pipeline {
                 sh (script: """
                     docker images -a
                     docker build -t spotmummify .
-                    docker images -a
                     cd ..
                 """)
             }
@@ -22,7 +21,7 @@ pipeline {
             steps {
                 //add code
                 echo "running docker-compose..."
-                sh (script: 'docker-compose up -d')
+                sh (script: 'docker-compose up')
                 echo "running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
