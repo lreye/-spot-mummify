@@ -2,15 +2,18 @@ version: "3"
 services: 
     server:
         build: 
+            args: 
+                - NODE_ENV=development 
             context: .
             dockerfile: Dockerfile
+        image: spotmummify:latest
+        command: npm run start
         ports: 
             - "5000:5000"
             - "5001:5001"
         environment:
-            - SERVER_PORT=8080
+            - SERVER_PORT=5000
         volumes:
-            - ./:/usr/src/app
-            - /usr/app/node_modules
+            - .:/code
         command: npm run start
             

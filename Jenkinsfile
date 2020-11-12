@@ -9,7 +9,6 @@ pipeline {
         stage ('Docker Build') {
             steps{ 
                 sh(script: 'docker system prune -a')
-                sh (script: 'docker images -a')
                 sh (script: """
                     docker images -a
                     docker build -t spotmummify .
