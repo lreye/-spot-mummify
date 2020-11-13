@@ -6,12 +6,11 @@ pipeline {
                 echo 'Pulling... ' + env.GIT_BRANCH
             }
         }
-        stage ('Docker Build') {
+        stage ('Docker Clean Up') {
             steps{ 
-                sh(script: 'docker system prune -a')
+                sh(script: 'docker system prune -af --volumes')
                 sh (script: """
                     docker images -a
-                    docker build -t spotmummify .
                     cd ..
                 """)
             }
@@ -19,8 +18,8 @@ pipeline {
         stage ('Start Test App') {
             steps {
                 //add code
-                echo "running docker-compose..."
-                sh (script: 'docker-compose up')
+                echo "Running docker-compose up --build..."
+                sh (script: 'docker-compose up --build')
                 echo "running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
