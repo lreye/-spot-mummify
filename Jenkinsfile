@@ -2,12 +2,12 @@ pipeline {
     agent any
     stages {
         stage ('Verify Branch'){
-            steps{
+            steps {
                 echo 'Pulling... ' + env.GIT_BRANCH
             }
         }
         stage ('Docker Clean Up') {
-            steps{ 
+            steps { 
                 sh(script: 'docker system prune -af --volumes')
                 sh (script: """
                     docker images -a
@@ -16,8 +16,10 @@ pipeline {
             }
         }
         stage ('Docker Build'){
-            echo "Running docker-compose build..."
-            sh (script: 'docker-compose build')
+            steps{
+                echo "Running docker-compose build..."
+                sh (script: 'docker-compose build')
+            }
 
         }
         stage ('Start Test App') {
