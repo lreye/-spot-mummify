@@ -1,14 +1,17 @@
-FROM node:12
-ARG NODE_ENV=production
-ENV NODE_ENV $NODE_ENV
+FROM node:12 AS development 
+RUN mkdir /code && chown node:node /code
+USER node
+#EXPOSE 5000 5001
+#ENV NODE_ENV=dev
 WORKDIR /code
-ARG PORT=5000
-ENV PORT $PORT
-EXPOSE $PORT 5001
-COPY package*.json /code
-RUN npm install
+COPY --chown=node:node package*.json ./
+RUN npm install --quiet
 
+RUN mkdir -p node_modules
 
-COPY . /code
-
-#CMD ["node", "server.js"]
+FROM node:12 AS production
+USER node 
+WORKDIR /code
+COPY --from=development --chown=root:root /code/node_modules ./node_modules
+COPY . .
+CMD ["node", "server.js"]

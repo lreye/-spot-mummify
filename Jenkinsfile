@@ -15,12 +15,17 @@ pipeline {
                 """)
             }
         }
+        stage ('Docker Build'){
+            echo "Running docker-compose build..."
+            sh (script: 'docker-compose build')
+
+        }
         stage ('Start Test App') {
             steps {
                 //add code
-                echo "Running docker-compose up --build..."
-                sh (script: 'docker-compose up --build')
-                echo "running test on http connection"
+                echo "Running docker-compose up..."
+                sh (script: 'docker-compose up')
+                echo "Running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
             post {
