@@ -25,8 +25,8 @@ pipeline {
         stage ('Start Test App') {
             steps {
                 //add code
-                echo "Running docker-compose up..."
-                sh (script: 'docker-compose up')
+                echo "Running docker-compose run for server..."
+                sh (script: 'docker-compose run -d --rm server ')
                 echo "Running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
