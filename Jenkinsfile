@@ -8,8 +8,6 @@ pipeline {
         }
         stage ('Docker Clean Up') {
             steps {
-                sh(script: 'docker stop $(docker ps -a -q)')
-                sh(script: 'docker rm $(docker ps -a -q)')
                 sh(script: 'docker system prune -af --volumes')
                 sh (script: """
                     docker images -a
@@ -41,7 +39,7 @@ pipeline {
                     echo "App started successfully :)"
                 }
                 failure {
-                    sh(script: 'docker stop ${env.CONTAINER_ID}')
+                    sh(script: 'docker stop $(docker ps -a -q)')
                     echo "App failed to start :("
                 }
             }
@@ -55,7 +53,7 @@ pipeline {
         stage ('Stop Test App') {
             steps {
                 echo "Stopping App"
-                sh(script: 'docker stop ${env.CONTAINER_ID}')
+                sh(script: 'docker stop $(docker ps -a -q)')
             }
         }
     }
