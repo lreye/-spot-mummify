@@ -7,7 +7,7 @@ pipeline {
             }
         }
         stage ('Docker Clean Up') {
-            steps { 
+            steps {
                 sh(script: 'docker system prune -af --volumes')
                 sh (script: """
                     docker images -a
@@ -26,9 +26,11 @@ pipeline {
             steps {
                 //add code
                 echo "Running spotmummify docker image on localhost:5000."
-                env.CONTAINER_ID = sh (
-                    script: 'docker run --rm --detach --publish 5000:5000 spotmummify:latest',
-                    returnStdout: true).trim()
+                script{
+                    env.CONTAINER_ID = sh (
+                        script: 'docker run --rm --detach --publish 5000:5000 spotmummify:latest',
+                        returnStdout: true).trim()
+                }
                 echo "Running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
