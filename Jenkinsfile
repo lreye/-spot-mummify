@@ -8,6 +8,8 @@ pipeline {
         }
         stage ('Docker Clean Up') {
             steps {
+                sh(script: 'docker stop $(docker ps -a -q)')
+                sh(script: 'docker rm $(docker ps -a -q)')
                 sh(script: 'docker system prune -af --volumes')
                 sh (script: """
                     docker images -a
