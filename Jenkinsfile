@@ -26,9 +26,9 @@ pipeline {
             steps {
                 //add code
                 echo "Running spotmummify docker image on localhost:5000."
-                CONTAINER_ID = sh (
+                env.CONTAINER_ID = sh (
                     script: 'docker run --rm --detach --publish 5000:5000 spotmummify:latest',
-                    returnStatus: true).trim()
+                    returnStdout: true).trim()
                 echo "Running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
@@ -51,7 +51,7 @@ pipeline {
         stage ('Stop Test App') {
             steps {
                 echo "Stopping App"
-                sh(script: 'docker stop ${CONTAINER_ID')
+                sh(script: 'docker stop ${env.CONTAINER_ID')
             }
         }
     }
