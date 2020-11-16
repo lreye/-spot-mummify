@@ -39,7 +39,7 @@ pipeline {
                     echo "App started successfully :)"
                 }
                 failure {
-                    sh(script: 'docker stop ${CONTAINER_ID}')
+                    sh(script: 'docker stop ${env.CONTAINER_ID}')
                     echo "App failed to start :("
                 }
             }
@@ -53,7 +53,7 @@ pipeline {
         stage ('Stop Test App') {
             steps {
                 echo "Stopping App"
-                sh(script: 'docker stop ${env.CONTAINER_ID')
+                sh(script: 'docker stop ${env.CONTAINER_ID}')
             }
         }
     }
