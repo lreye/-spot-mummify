@@ -17,16 +17,18 @@ pipeline {
         }
         stage ('Docker Build'){
             steps{
-                echo "Running docker-compose build..."
-                sh (script: 'docker-compose build')
+                echo "Building docker image"
+                sh (script: 'docker build . -t spotmummify:latest')
             }
 
         }
         stage ('Start Test App') {
             steps {
                 //add code
-                echo "Running docker-compose run for server..."
-                sh (script: 'docker-compose run -d --rm server ')
+                echo "Running spotmummify docker image on localhost:5000."
+                CONTAINER_ID = sh (
+                    script: 'docker run --rm --detach --publish 5000:5000 spotmummify:latest'
+                    returnStdout: true).trim()
                 echo "Running test on http connection"
                 sh ("./Tests/test_http_ok.sh")
             }
@@ -35,7 +37,7 @@ pipeline {
                     echo "App started successfully :)"
                 }
                 failure {
-                    sh(script: 'docker-compose down --volumes')
+                    sh(script: 'docker stop ${CONTAINER_ID}')
                     echo "App failed to start :("
                 }
             }
@@ -49,7 +51,7 @@ pipeline {
         stage ('Stop Test App') {
             steps {
                 echo "Stopping App"
-                sh(script: 'docker-compose down --volumes')
+                sh(script: 'docker stop ${CONTAINER_ID')
             }
         }
     }
