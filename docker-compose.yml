@@ -1,0 +1,16 @@
+version: "3.7"
+services: 
+    server:
+        build: 
+            context: .
+            target: development 
+        image: spotmummify:latest
+        command: npm run dev
+        ports: 
+            - "5000:5000"
+            - "5001:5001"
+        volumes:
+            - .:/code
+            - spotmummify_node_modules:/code/node_modules
+volumes: 
+    spotmummify_node_modules:
