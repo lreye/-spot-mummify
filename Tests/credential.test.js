@@ -1,4 +1,4 @@
-const credentials = require('../src/backend/credentials');
+const credentials = require('../src/backend/middleware/credentials');
 
 test("Testing Credentials Module", () =>{
     expect(credentials.client_id).toBe(process.env.CLIENT_ID);
