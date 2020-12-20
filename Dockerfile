@@ -14,4 +14,4 @@ USER node
 WORKDIR /code
 COPY --from=development --chown=root:root /code/node_modules ./node_modules
 COPY . .
-CMD ["node", "server.js"]
+CMD ["node", "./src/backend/server.js"]
