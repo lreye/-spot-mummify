@@ -1,4 +1,4 @@
-const app = require('./src/backend/app');
+const app = require('./app');
 //server config
 const PORT = 5000;
 const HOST = '0.0.0.0';
