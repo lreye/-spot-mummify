@@ -1,6 +1,5 @@
 const express = require('express');
 const getAccessToken = require('../middleware/getAccessToken');
-const db = require("../dataBase");
 const config = require('../config');
 
 const getAuthRoutes = () => {
