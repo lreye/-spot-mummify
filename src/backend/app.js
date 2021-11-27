@@ -10,7 +10,7 @@ const app = express();
 
 //set the app to use the db
 const db = require("./dataBase");
-app.db = db;
+app.db = db; //need to change implementation 
 
 
 //midleware

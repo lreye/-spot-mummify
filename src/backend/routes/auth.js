@@ -16,7 +16,7 @@ const welcome = (req, res, next) => {
         }
         else{
             console.log("Redirect After Saving Token");
-            res.status(200).redirect(`${config.client.clientURL}/?authorized=true`);
+            res.status(200).redirect(`${config.client.clientURL}:${config.client.portNumber}/history?authorized=true`);
         }
     });
 };
